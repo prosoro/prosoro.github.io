@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Anchoring Morphological Representations Unlocks Latent Proprioception in Soft Robots">
+  <meta name="keywords" content="ProSoRo, MVAE, Robotics">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anchoring Morphological Representations Unlocks Latent Proprioception in Soft Robots</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/bulma.min.css">
+  <link rel="stylesheet" href="css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="css/bulma-slider.min.css">
+  <link rel="stylesheet" href="css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="icon" href="images/logo/favicon.ico" type="image/x-icon">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="js/fontawesome.all.min.js"></script>
+  <script src="js/bulma-carousel.min.js"></script>
+  <script src="js/bulma-slider.min.js"></script>
+  <script src="js/index.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <table align="center" class="table">
+              <tr>
+                <td>
+                  <a href="https://www.sustech.edu.cn/en/">
+                    <img src="./images/logo/sustech_light.png" width="300px" alt="SUSTech"></img>
+                  </a>
+                </td>
+                <td>
+                  <a href="https://bionicdl.ancorasir.com">
+                    <img src="./images/logo/bionicdl.jpg" width="70px" alt="BionicDL"></img>
+                  </a>
+                </td>
+                <td>
+                  <a href="https://maindl.ancorasir.com">
+                    <img src="./images/logo/maindl.jpg" width="70px" alt="MainDL"></img>
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <h1 class="title is-1 publication-title">Anchoring Morphological Representations Unlocks Latent
+              Proprioception in Soft Robots</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://hanxudong.cc">Xudong Han</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://gabriel-ning.github.io">Ning Guo</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Ronghan Xu</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://maindl.ancorasir.com">Fang Wan</a><sup>1,</sup>*,
+              </span>
+              <span class="author-block">
+                <a href="https://bionicdl.ancorasir.com">Chaoyang Song</a><sup>1,</sup>*
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <sup>1</sup>Southern University of Science and Technology, <sup>2</sup> Shanghai Jiao Tong University
+              </span>
+            </div>
+            <div class="is-size-5 affiliation">
+              *Corresponding authors
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="title is-5">Advanced Intelligent Systems (accepted)</div>
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/ancorasir/ProSoRo"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://sites.google.com/view/prosoro-hardware"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-book"></i>
+                    </span>
+                    <span>Hardware</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#BibTeX" class="button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-code"></i>
+                    </span>
+                    <span>BibTeX</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <!-- <h2 class="title is-3">Abstract</h2> -->
+            <div class="content has-text-justified">
+              <p>
+                This research addresses the need for robust proprioceptive methods that capture the continuous
+                deformations of soft robots without relying on multiple sensors that hinder compliance. We propose a
+                vision-based deformation learning strategy called <i>latent proprioception</i>, which anchors the
+                robot's overall deformation state to a single internal reference frame tracked by a miniature onboard
+                camera. Through a multi-modal neural network trained on simulated and real data, we unify motion, force,
+                and shape measurements into a shared representation in <i>latent codes</i>, inferring unseen states
+                from readily measured signals. Our experimental results show that this approach accurately reconstructs
+                full-body deformations and forces from minimal sensing data, enabling soft robots to adapt to complex
+                object manipulation or safe human interaction tasks. The proposed framework exemplifies how a
+                vision-based deformable learning approach can inform and enhance robotics by reducing sensor complexity
+                and preserving mechanical flexibility. We anticipate that such hybrid system codesign will advance
+                robotic capabilities, deepen our understanding of natural movement, and potentially translate back into
+                healthcare and wearable technologies for living beings. This work paves the way for soft robots endowed
+                with greater autonomy and resilience.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel-hero" class="carousel results-carousel">
+          <div class="item">
+            <video poster="" id="hero_1" autoplay muted loop height="100%">
+              <source src="videos/hero_1.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" id="hero_2" autoplay muted loop height="100%">
+              <source src="videos/hero_2.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <video poster="" id="hero_3" autoplay muted loop height="100%">
+              <source src="videos/hero_3.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Anchoring soft robotic motion for proprioception</h2>
+          <div class="content has-text-justified">
+            <p>
+              This study introduces an anchor-based approach that leverages a single internal reference frame to infer
+              the full proprioceptive state of a soft robot, encompassing motion, force, and shape. We developed
+              <b>Proprioceptive Soft Robots (ProSoRo)</b>, an integrated system that combines soft materials with
+              embedded sensing capabilities. Each ProSoRo features a metastructure mounted between a top and bottom
+              frame, with a marker affixed to the top frame serving as the anchor frame. A miniature monocular camera
+              embedded within the bottom frame tracks the marker's movement in real time. More building details can be
+              found in <a href="https://sites.google.com/view/prosoro-hardware"> hardware guide</a>.
+            </p>
+          </div>
+          <div class="content">
+            <img src="./images/prototype.jpg" width="900px" alt="prototype"></img>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              To harness the full potential of this anchor-based approach, we developed a multi-modal proprioception
+              learning framework utilizing a <b>multi-modal variational autoencoder (MVAE)</b> to align motion, force,
+              and shape of ProSoRos into a unified representation based on an anchored observation, involving three
+              stages:
+            </p>
+          </div>
+          <div class="content">
+            <img src="./images/framework.jpg" width="900px" alt="framework"></img>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              <b>Stage 1: Material identification</b>: Recognizing the impracticality of collecting extensive physical
+              datasets for soft robots, we leveraged finite element analysis (FEA) simulations to generate high-quality
+              training data. We begin by measuring the material's stress-strain curve through the standard uniaxial
+              tension test to obtain the best-fitted material model. Then, we apply an evolution strategy (<a
+                href="https://github.com/ancorasir/EVOMIA">EVOMIA</a>) to optimize the material parameters by comparing
+              the calculated force from finite element analysis (FEA) and the measured ground truth from a physical
+              experiment under the same motion of the anchor point.
+            </p>
+            <p>
+              <b>Stage 2: Latent proprioceptive learning</b>: The simulation dataset was generated using the optimized
+              material parameters and provided motion in $[D_x, D_y, D_z, R_x, R_y, R_z]^\mathrm{T}$, force in $[F_x,
+              F_y, F_z, T_x, T_y, T_z]^\mathrm{T}$, and shape in node displacements of $[n_x, n_y, n_z]_{3n}^\mathrm{T}$
+              as the training inputs. To learn these modalities for explicit proprioception, we developed a multi-modal
+              variational autoencoder (MVAE) to encode the ProSoRo's proprioception via latent codes. Three modal latent
+              codes are generated through three specific motion, force, and shape encoders, and the shared code contains
+              fused information from all three modalities by minimizing the errors among the three codes. As a result,
+              the shared codes provide explicit proprioception in the latent space, denoted as latent proprioception,
+              which can be used to reconstruct the three modalities using specific decoders for applied interactions.
+            </p>
+            <p>
+              <b>Stage 3: Cross-modal inference</b>: In real-world deployments, the shape modality, for example, can be
+              estimated from latent proprioception instead of direct measurement, which is usually impossible to achieve
+              in real-time interactions in robotics. At this stage, we visually capture the ProSoRo's anchor point as
+              MVAE's input to estimate the force and shape modalities based on the latent knowledge learned from
+              simulation data. We found that our proposed latent proprioception framework to be a versatile solution in
+              soft robotic interactions.
+            </p>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              Following the above stages, we realized proprioception on six different shapes of ProSoRos, and the
+              prototypes are shown below.
+            </p>
+          </div>
+          <video id="teaser" autoplay muted loop controls width="900px">
+            <source src="videos/prosoro.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Learning latent proprioception with key morphing primitives</h2>
+          <div class="content has-text-justified">
+            <p>
+              To delve deeper into the latent code's structure, we analyzed the correlations among the latent codes
+              $\mathbf{z}_{m}$, $\mathbf{z}_{f}$, and $\mathbf{z}_{s}$ generated from motion, force, and shape inputs.
+              Six components of the latent code exhibited high correlation coefficients across the modalities,
+              identifying them as key morphing primitives. These primitives are pivotal in encoding the robot's
+              deformation behaviors and are instrumental in cross-modal inference. We visualized the relationships
+              between explicit proprioceptive modalities and the latent codes from $z_{1}$ to $z_{32}$ using a chord
+              diagram. Results highlight the dominance of $z_{8}$, $z_{19}$, $z_{20}$, $z_{22}$, $z_{31}$, and $z_{32}$
+              in learning latent proprioception with the most significant widths, which are considered as the <b>key
+                morphing primitives</b>.
+            </p>
+          </div>
+          <div class="content">
+            <img src="images/latent_code.jpg" width="900px" alt="latent code"></img>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              By systematically varying these six latent components, we generated a series of deformation modes for
+              ProSoRos. Each key morphing primitive influences the shape in a distinct manifold, providing intuitive
+              control handles for manipulating complex deformations.
+            </p>
+          </div>
+          <video id="teaser" autoplay muted loop width="800px">
+            <source src="videos/kmp.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Sim-to-real transfer for cross-modal inference</h2>
+          <div class="content has-text-justified">
+            <p>
+              To evaluate the MVAE's real-world applicability, we conducted experiments using physical ProSoRo
+              prototypes.
+            </p>
+          </div>
+          <div class="content">
+            <img src="images/sim2real_setup.jpg" width="900px" alt="sim2real evalution setup"></img>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              We compared the shapes estimated by MVAE with the ground truth measured by the 3D scanner under 30
+              different poses for each type of ProSoRo. And we also compared the forces with those measured by the
+              force/torque sensor under manual movements during a period of 30 seconds. The results verify that the
+              latent proprioception of MVAE trained by simulation data is transferable to estimate reliable states of
+              ProSoRo in reality, confirming the model's effectiveness in cross-modal inference.
+            </p>
+          </div>
+          <div class="columns is-centered">
+            <div class="column">
+              <img src="images/sim2real_result.jpg" width="900px" alt=""></img>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Digitalizing and synthesizing omni-directional motions</h2>
+          <div class="content has-text-justified">
+            <p>
+              The capacity to replicate complex motions across different platforms is a powerful tool for advancing soft
+              robotic applications, such as teleoperation and coordinated multi-robot systems. We demonstrated this
+              capability by digitalizing the motion of a manually operated ProSoRo and synthesizing it on an active
+              ProSoRo mounted on a tendon-driven platform.
+            </p>
+          </div>
+          <div class="content">
+            <img src="images/motion.jpg" width="900px" alt="motion"></img>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              We evaluated the motion replication fidelity using the MoCap system by tracking trajectories for various
+              motion patterns, including circular, square, four-leaved rose, and spiral paths. The result shows accurate
+              and robust performance for digitalizing and synthesizing omnidirectional motion of ProSoRo advanced by
+              MVAE with latent proprioception knowledge.
+            </p>
+          </div>
+          <div class="columns is-centered">
+            <div class="column">
+              <video id="teaser" autoplay muted loop controls width="100%">
+                <source src="videos/tm_circle.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <video id="teaser" autoplay muted loop controls width="100%">
+                <source src="videos/tm_square.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="columns is-centered">
+            <div class="column">
+              <video id="teaser" autoplay muted loop controls width="100%">
+                <source src="videos/tm_rose.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column">
+              <video id="teaser" autoplay muted loop controls width="100%">
+                <source src="videos/tm_spiral.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Applicability to sequential contact reasoning</h2>
+          <div class="content has-text-justified">
+            <p>
+              Understanding contact interactions is crucial for soft robots engaged in manipulation tasks, especially in
+              unstructured or dynamic environments. We explored the MVAE's capability to infer contact states during a
+              pivoting manipulation of a wine glass using a soft-rigid hybrid arm. The hybrid arm incorporated omni-neck
+              ProSoRos as joints and dome-shaped ProSoRos as gripper fingers.
+            </p>
+          </div>
+          <div class="content">
+            <img src="images/arm_pl.jpg" width="900px" alt="arm pl"></img>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              Initially, the arm was naturally downward, and the gripper was open. Then, the gripper closed to catch the
+              lying wine glass, and the two dome ProSoRos were compressed with a specific contact extent, allowing the
+              wine glass to rotate in hand. The colors represented the displacements of each node, facilitating the
+              operator's intuitive judgment. The gripper dragged the wine glass on the plane when the arm rolled up.
+              After the wine glass was lifted to the appropriate height, it rotated to a standing state in the gripper.
+              Then the gripper opened, and the two dome ProSoRos were relaxed.
+            </p>
+          </div>
+          <div class="content">
+            <video id="teaser" autoplay muted loop controls width="900px">
+              <source src="videos/arm.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="content has-text-justified">
+            <p>
+              During the sequential contact process, the two dome ProSoRos on the gripper were deformed when contacting
+              with the wine glass, and the motion captured by the inner camera was encoded to latent code $z_{1}$ to
+              $z_{32}$ by MVAE. By analyzing the temporal evolution of the latent codes, we observed distinct patterns
+              corresponding to different contact states. Clustering these latent codes revealed four primary interaction
+              phases: relaxed, compressed, sliding, and transforming. We used the <i>k</i>-means clustering algorithm
+              to classify the latent codes into four categories. We visualized them by <i>t</i>-distributed stochastic
+              neighbor embedding (<i>t</i>-SNE). The results show the contact reasoning capability of the latent
+              proprioception during sequential contact manipulation, providing strong support for researchers to
+              identify contact states and apply them to control strategies.
+            </p>
+          </div>
+          <div class="content">
+            <img src="images/arm_res.jpg" width="900px" alt="arm result"></img>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre>
+        <code>
+@article{han2025anchoring,
+    title={Anchoring Morphological Representations Unlocks Latent Proprioception in Soft Robots},
+    author={Han, Xudong and Guo, Ning and Xu, Ronghan and Wan, Fang and Song, Chaoyang},
+    journal={Advanced Intelligent Systems},
+    volume={0},
+    pages={0-0},
+    year={2025}
+}
+        </code>
+      </pre>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              Website template credit to
+              <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>,
+              and is licensed under a
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    bulmaCarousel.attach('#results-carousel-hero', {
+      slidesToScroll: 1,
+      slidesToShow: 2,
+      autoplay: true,
+      loop: true,
+      infinite: true,
+      duration: 500,
+      autoplaySpeed: 10000,
+    });
+
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+  </script>
+</body>
+
+</html>
